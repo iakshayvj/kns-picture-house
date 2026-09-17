@@ -69,7 +69,11 @@
   <div class="modal-card" id="modal-card"><!-- film detail injected --></div>
 </dialog>
 
+<script src="posters-a.js"></script>
+<script src="posters-b.js"></script>
+<script src="posters-c.js"></script>
 <script src="data.js"></script>
+<script>if (window.KNS_POSTERS) { KNS_DATA.movies.forEach(function (m) { if (KNS_POSTERS[m.id]) m.poster = KNS_POSTERS[m.id]; }); }</script>
 <script src="app.js"></script>
 </body>
 </html>
