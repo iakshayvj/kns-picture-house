@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KNS Picture House</title>
+<meta name="description" content="A two-person picture house. Four films a day, chosen from the list.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;1,9..144,300;1,9..144,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="grain" aria-hidden="true"></div>
+
+<header class="marquee">
+  <div class="marquee-inner">
+    <div class="bulb-row" id="bulbs-top" aria-hidden="true"></div>
+    <p class="marquee-kicker">EST. 2026 &middot; BENGALURU &middot; TWO SEATS, NIGHTLY</p>
+    <h1 class="marquee-name">KNS PICTURE HOUSE</h1>
+    <div class="now-showing"><span>NOW&nbsp;SHOWING</span></div>
+    <div class="bulb-row" id="bulbs-bottom" aria-hidden="true"></div>
+  </div>
+</header>
+
+<main>
+  <section class="board-wrap" aria-label="Today's programme">
+    <div class="board-frame">
+      <div class="board" id="board"><!-- programme rows injected --></div>
+    </div>
+    <div class="programme-meta">
+      <span id="programme-no">PROGRAMME &nbsp;&mdash;</span>
+      <span class="dot">&middot;</span>
+      <span id="rotation-countdown">ROTATES IN &mdash;</span>
+    </div>
+  </section>
+
+  <section class="ledger" aria-label="Archive">
+    <h2 class="ledger-title"><span>The Ledger</span></h2>
+    <p class="ledger-sub">Every film on the list. Stamped once watched.</p>
+    <div class="ledger-grid" id="ledger-grid"><!-- archive cards injected --></div>
+  </section>
+
+  <section class="house-notes">
+    <h2 class="ledger-title"><span>House Notes</span></h2>
+    <div class="notes-cols">
+      <div>
+        <h3>How the programme works</h3>
+        <p>Four films, no two alike, go up on the board at midnight and stay for exactly 24 hours. Until the house has heard from you both, every title comes only from the list you keep in Google Keep &mdash; nothing else gets in.</p>
+      </div>
+      <div>
+        <h3>After the film</h3>
+        <p>Log what you watched, how it landed, and a line or two. The house keeps each of your tastes on file, separately and together. Once it knows you, it starts suggesting where to go next &mdash; Iran, Turkey, Brazil, Europe and beyond.</p>
+      </div>
+      <div>
+        <h3>Your feedback, held locally</h3>
+        <p>Ratings live in this browser for now. Use &ldquo;Share feedback&rdquo; to hand them back so they become part of the permanent record.</p>
+        <button class="export-btn" id="export-feedback" type="button">Share feedback (export JSON)</button>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <p>KNS PICTURE HOUSE &middot; a private two-person cinema &middot; <span id="footer-count"></span></p>
+</footer>
+
+<dialog class="modal" id="film-modal">
+  <div class="modal-card" id="modal-card"><!-- film detail injected --></div>
+</dialog>
+
+<script src="data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
