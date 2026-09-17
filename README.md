@@ -1,43 +1,45 @@
 # KNS Picture House
 
-A private two-person cinema. Four films a night, chosen from the list, on a
-glowing board that changes at midnight. Inspired by the illuminated programme
-board outside IFC Center, New York.
+**A private two-person cinema programme, built from the films Kruthika and I actually want to watch.**
 
-## What it is today (stage 1, shipped)
+[Open KNS Picture House](https://iakshayvj.github.io/kns-picture-house/)
 
-- **Programme board**: four unrelated films, fixed for exactly 24 hours,
-  rotating at midnight IST. Deterministic — the same programme shows on any
-  device. Every pick comes only from the Keep list until the house has enough
-  viewing history to recommend.
-- **The Ledger**: the full list as an archive, stamped when watched.
-- **Real data per film**: poster, year, country, language, 1-2 line plot,
-  IMDb score, Rotten Tomatoes score, and where it streams in India.
-- **Log a watch**: who watched (Akshay / Kruthika / both), 1-5 stars,
-  reaction, notes. Stored per browser for now, exportable as JSON
-  ("Share feedback") to be merged into the permanent record.
+## The story
 
-## Data pipeline
+Kruthika and I love watching films, but choosing one kept turning into a 30-minute discussion. We already had a shared list of 11 films, so I wanted something better than another streaming grid: a glowing programme board that gives us four films at a time and changes every night.
 
-- `data/movies.json` — the database. Source of truth: the Google Keep note
-  "Movies to Watch with KNS" (synced manually/agent-assisted; Keep has no
-  public API).
-- `scripts/enrich.py` — enrichment: IMDb suggestion API + Cinemeta (IMDb
-  rating), Wikipedia (plot, country, language, poster), Rotten Tomatoes
-  (tomatometer), JustWatch GraphQL (India streaming offers).
-- `scripts/build.mjs` — compiles `data/movies.json` into `site/data.js` so the
-  site works from `file://` and any static host without CORS issues.
-- Posters live in `site/assets/posters/` so the site is self-contained.
+KNS Picture House turns that list into a small independent-cinema experience. The current programme is fixed for 24 hours, the full list stays in the Ledger, and every film carries enough context to make a decision without opening five more tabs.
 
-## Roadmap (approved build order)
+## What works today
 
-1. ~~Ingest Keep list, four-film rotating experience~~ — this release.
-2. Feedback + watched state — UI shipped; localStorage today, shared DB next.
-3. Recommendation engine — per-person + shared taste from logged watches;
-   international cinema (Iran, Turkey, Brazil, Europe…). Held back until
-   enough history exists.
-4. Multi-user with Google login, then a public version — only if it earns it.
+| | Feature | What it does |
+|---|---|---|
+| 🎞️ | Nightly programme | Shows four unrelated films for 24 hours, then rotates at midnight IST |
+| 📚 | The Ledger | Keeps the full watchlist in one place and marks watched films |
+| 🍅 | Film context | Shows poster, year, country, language, plot, IMDb and Rotten Tomatoes scores |
+| 🇮🇳 | India availability | Shows where each film streams in India |
+| ✍️ | Watch log | Records who watched, a 1-5 rating, reaction and notes in the current browser |
+| 🔄 | Keep sync | Checks the movie list once daily and republishes only when it changes |
 
-## Running it
+## How the data moves
 
-Open `site/index.html` in a browser. That's it.
+The source list lives in a Google Keep note. A privacy-filtered daily sync extracts movie titles only, compares them with `data/movies.json`, enriches new titles, rebuilds the static site and verifies the published result.
+
+The enrichment pipeline uses Cinemeta, Wikipedia, Rotten Tomatoes and JustWatch India. The site itself is static and hosted on GitHub Pages.
+
+## The honest bit
+
+Watch feedback is stored in `localStorage` today, so it does not yet follow us across devices. Shared accounts, a permanent watch history and taste-based recommendations are the next stages. Recommendations are deliberately held back until there is enough real viewing history to make them useful.
+
+## Run it locally
+
+```sh
+node scripts/build.mjs
+python3 -m http.server 4173 -d site
+```
+
+Then open `http://localhost:4173`.
+
+## Built with Instinct
+
+I set the product direction, source list and taste rules. **Instinct designed and built the experience, researched and enriched the film data, tested it on desktop and mobile, published it to GitHub Pages, and set up the privacy-filtered Keep-to-site sync.**
