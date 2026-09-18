@@ -1,8 +1,8 @@
 {
   "club": "KNS Picture House",
   "source": "Google Keep: Movies to Watch with KNS",
-  "note": "Keep list synced 2026-09-17. 11 titles.",
-  "updated_at": "2026-09-17T20:10:00+05:30",
+  "note": "Keep list synced 2026-09-18. 12 titles.",
+  "updated_at": "2026-09-18T07:30:00+05:30",
   "movies": [
     {
       "id": "robot-dreams-2023",
@@ -183,6 +183,22 @@
       "imdb_id": "tt5259978",
       "poster": "assets/posters/sob-pressao-2016.jpg",
       "added_at": "2026-09-17",
+      "source_note": "Google Keep: Movies to Watch with KNS"
+    },
+    {
+      "id": "sister-2019",
+      "title": "Sister",
+      "year": 2019,
+      "country": "Bulgaria, Qatar",
+      "language": "Bulgarian",
+      "plot": "In a small Bulgarian town, a mother and her two daughters struggle to survive. The younger daughter’s invented stories trap her in a web of lies and upend her older sister’s ordered world.",
+      "imdb": "6.6",
+      "rt": null,
+      "streaming_in": [],
+      "justwatch": null,
+      "imdb_id": "tt11041136",
+      "poster": "assets/posters/sister-2019.jpg",
+      "added_at": "2026-09-18",
       "source_note": "Google Keep: Movies to Watch with KNS"
     }
   ]
